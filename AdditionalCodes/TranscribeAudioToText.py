@@ -1,3 +1,4 @@
+#pip install git+https://github.com/openai/whisper.git
 import whisper
 
 # Load pre-trained Whisper model
