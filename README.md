@@ -10,5 +10,8 @@ source LLaVaNV_env/bin/activate
 pip install -r requirements.txt <br />
 bash OtherRequirements.sh <br />
 
+# First and foremost Covert .MOV video files to .mp4. This conversion depends on the Multimodal LLM (MLLMs) LLaVa-Next we used. It could be different for other MLLMs.<br />
+Run ConvertVideos_MOV_to_mp4.py
+
 #We used slurm for this project as we required HPC GPU clusters so we use sbatch <br />
 
