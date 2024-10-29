@@ -7,20 +7,9 @@ This project leverages LLaVA Next, a multimodal large language model (MLLM) for 
 LLaVA Next offers state-of-the-art capabilities for multimodal understanding, combining visual encoding with natural language processing to support a range of tasks. This repository includes scripts and functions for loading and processing videos and querying the model, and obtaining visual interpretations.
 
 ### Key Features
-Object and Scene Recognition: Identifies objects and scenes in images with contextual descriptions.
-High-Resolution Support: Processes high-resolution images for detailed output.
-Multimodal Querying: Combines image and text inputs to generate a cohesive understanding.
-
-### Table of Contents
-About the Project
-Key Features
-Installation and Setup
-Usage Guide
-Examples
-Architecture Overview
-Contributing
-License
-Contact
+- Object and Scene Recognition: Identifies objects and scenes in images with contextual descriptions.  <br />
+- High-Resolution Support: Processes high-resolution images for detailed output.  <br />
+- Multimodal Querying: Combines image and text inputs to generate a cohesive understanding.  <br />
 
 ### Installation and Setup
 To use this project, ensure that you have Python 3.8+ and follow the steps below:
@@ -45,7 +34,9 @@ Run ConvertVideos_MOV_to_mp4.py
 #### Step 5: Run the script to extract video understing from converted mp4.
 python <ADD name of the script>
 To check every step check same steps in jupyter notebook.
+
 #### Optional Steps (as per the GPU resource using)
-We used slurm for this project as we required HPC GPU clusters so we use sbatch <br />
+We used slurm for this project as we required HPC GPU clusters so we use sbatch. We used 2 Nvidia L40s. <br />
+sbatch sbatch_gpu_resource.sh
 
 
