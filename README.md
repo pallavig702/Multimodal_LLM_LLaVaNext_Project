@@ -14,7 +14,7 @@ LLaVA Next offers state-of-the-art capabilities for multimodal understanding, co
 ### Installation and Setup
 To use this project, ensure that you have Python 3.8+ and follow the steps below:
 #### Step 1: Clone the Repository
-git clone https://github.com/yourusername/llava-next-visual.git
+git clone https://github.com/yourusername/llava-next-visual.git <br />
 cd llava-next-visual
 
 #### Step 2: Create Environment <br />
