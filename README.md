@@ -22,13 +22,19 @@ Contributing
 License
 Contact
 
-### Step 1: Create Environment <br />
+### Installation and Setup
+To use this project, ensure that you have Python 3.8+ and follow the steps below:
+#### Step 1: Clone the Repository
+git clone https://github.com/yourusername/llava-next-visual.git
+cd llava-next-visual
+
+### Step 2: Create Environment <br />
 python3 -m venv LLaVaNV_env      ##LLaVaNV_env is the name of the environment
 
 ### Step 2: Activate the environment
 source LLaVaNV_env/bin/activate 
 
-### Step 3: Install the following requirements in linux terminal <br />
+### Step 3: Install the following dependencies/requirements in linux terminal <br />
 pip install -r requirements.txt <br />
 bash OtherRequirements.sh <br />
 
@@ -36,6 +42,9 @@ bash OtherRequirements.sh <br />
 This conversion depends on the Multimodal LLM (MLLMs) LLaVa-Next we used. It could be different for other MLLMs.<br />
 Run ConvertVideos_MOV_to_mp4.py
 
+### Step 5: Run the script to extract video understing from converted mp4.
+python <ADD name of the script>
+To check every step check same steps in jupyter notebook.
 ### Optional Steps (as per the GPU resource using)
 We used slurm for this project as we required HPC GPU clusters so we use sbatch <br />
 
