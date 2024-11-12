@@ -79,26 +79,35 @@ clip_patient = read_video_pyav(container, indices)
 
 # Process each text-based prompt conversation from the file
 generated_texts = []
+prompt=[]
 for i, conversation in enumerate(conversations):
-    # Generate prompt for each conversation line
-    prompt = processor.apply_chat_template(conversation, add_generation_prompt=True)
+    # Generate prompt for each conversation line   
+    # Dynamically generate variable names
+    prompt_var_name = f"prompt_{i}"
+    print(prompt_var_name)
+    prompt_var_name = processor.apply_chat_template(conversation, add_generation_prompt=True)
+    prompt.append(prompt_var_name)
 
-    # Process inputs for each prompt
-    inputs = processor(
-        [prompt],
-        videos=[clip_patient],
-        padding=True,
-        return_tensors="pt"
-    ).to(model.device)
+video=[]
+for i in len(prompt)
+    video.append(clip_patient)
+    
+# Process inputs all prompts
+inputs = processor(
+    prompt,
+    videos=video,
+    padding=True,
+    return_tensors="pt"
+).to(model.device)
 
-    # Model generation
-    generate_kwargs = {"max_new_tokens": 1000, "do_sample": True, "top_p": 0.9}
-    output = model.generate(**inputs, **generate_kwargs)
-    generated_text = processor.batch_decode(output, skip_special_tokens=True, temperature=0.5)
+# Model generation
+generate_kwargs = {"max_new_tokens": 1000, "do_sample": True, "top_p": 0.9}
+output = model.generate(**inputs, **generate_kwargs)
+generated_text = processor.batch_decode(output, skip_special_tokens=True, temperature=0.5)
 
-    # Clean up and store generated text
-    processed_text = [text.replace("\\n", "\n") for text in generated_text]
-    generated_texts.extend(processed_text)
+# Clean up and store generated text
+processed_text = [text.replace("\\n", "\n") for text in generated_text]
+generated_texts.extend(processed_text)
 
 # Save all generated texts to output file
 filename2 = 'output_mllm'
