@@ -1,0 +1,6 @@
+Is the patient old?
+Is the patient women?
+Is the women seem to have poor vision?
+Is the floor Slippery?
+Is the patient having difficulty walking?
+Is there any instance of Impaired mobility with respect to patient?
