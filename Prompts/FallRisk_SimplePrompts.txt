@@ -5,8 +5,8 @@
 5. Based on the video, does the patient display any visible signs of difficulty walking that could increase their risk of falling? Provide response as 'Yes', 'No', or 'Insufficient information'.  If 'Yes,' summarize the reason in one line.
 6. Based on the video, is there any visible indication that the floor is uneven in a way that could increase the risk of falling? Provide response as 'Yes', 'No', or 'Insufficient information'.  If 'Yes,' summarize the reason in one line.
 
-7. Based on the video, does the space appear visually cluttered in a way that could increase the patient's risk of falling? Answer 'Yes' or 'No' only and then list the signs.
-8. Based on the video, does the patient show any visible signs of impaired mobility that could increase their risk of falling? Answer 'Yes' or 'No' only and then list the signs.
+7. Based on the video, does the space appear visually cluttered in a way that could increase the patient's risk of falling? Provide response as 'Yes', 'No', or 'Insufficient information'.  If 'Yes,' summarize the reason in one line.
+8. Based on the video, does the patient show any visible signs of impaired mobility that could increase their risk of falling? Provide response as 'Yes', 'No', or 'Insufficient information'.  If 'Yes,' provide a concise list of signs.
 9. Based on the video, does the room appear to be well-lit? Answer 'Yes' or 'No' only.
 10. Based on the video, is the patient wearing footwear that appears inappropriate and could increase the risk of falling? Answer 'Yes' or 'No' only.
-11. Based on the video, is the patient observed doing exercises on the floor that may increase the risk of falling? Answer 'Yes' or 'No' only
+11. Based on the video, is the patient observed doing exercises on the floor that may increase the risk of falling? Answer 'Yes' or 'No' only.
