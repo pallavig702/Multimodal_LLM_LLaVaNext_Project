@@ -35,6 +35,7 @@ Run ConvertVideos_MOV_to_mp4.py
 python <ADD name of the script>
 To check every step check same steps in jupyter notebook.
 
+![test](https://github.com/pallavig702/Multimodal_LLM_LLaVaNext_Project/blob/main/Images/Flow_of_script.png)
 #### Optional Steps (as per the GPU resource using)
 We used slurm for this project as we required HPC GPU clusters so we use sbatch. We used 2 Nvidia L40s. <br />
 sbatch sbatch_gpu_resource.sh
