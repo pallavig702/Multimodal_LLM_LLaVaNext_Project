@@ -1,7 +1,0 @@
-accelerate==0.34.2
-bitsandbytes==0.43.3
-#transformers==4.45.0
-huggingface-hub==0.24.6
-matplotlib==3.7.1
-requests==2.32.3
-protobuf
