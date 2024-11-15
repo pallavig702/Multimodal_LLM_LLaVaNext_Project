@@ -1,17 +1,24 @@
+#This script is a sophisticated machine learning pipeline to process video data alongside textual prompts using a pre-trained model (LLaVA-NeXT-Video-7B-hf).
+
 ############################################################################################
-##################################### LOAD THE MODEL #######################################
+############################## STEP 1: LOAD THE MODEL ######################################
 ############################################################################################
-from transformers import BitsAndBytesConfig, LlavaNextVideoForConditionalGeneration, LlavaNextVideoProcessor
-import torch
+from transformers import BitsAndBytesConfig, LlavaNextVideoForConditionalGeneration, LlavaNextVideoProcessor #for pre-trained model and processor.
+import torch #for tensor-based computation.
 import csv
-import av
+import av #video decoding.
 import numpy as np
 
 # Model configuration
+# Explanation: Configures the model to load in 4-bit quantization (reducing memory footprint) and uses 16-bit floating point precision for computations.
 quantization_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_compute_dtype=torch.float16
 )
+
+# Model and Processor Initialization:
+# Processor: Prepares inputs for the LLaVA-NeXT model.
+# Model: Loads the video-conditioned text generation model with pre-trained weights.
 
 processor = LlavaNextVideoProcessor.from_pretrained("llava-hf/LLaVA-NeXT-Video-7B-hf")
 model = LlavaNextVideoForConditionalGeneration.from_pretrained(
@@ -21,10 +28,10 @@ model = LlavaNextVideoForConditionalGeneration.from_pretrained(
 )
 
 ############################################################################################
-########################### LOAD TEXT PROMPTS AND INSTRUCTIONS  ############################
+####################### STEP 2: LOAD TEXT PROMPTS AND INSTRUCTIONS  ############################
 ############################################################################################
 
-# Function to read text lines from a file and format them as prompts
+# Function to read text prompts from a file and format them as structured conversations for the model.
 def load_text_prompts(filename,instruction):
     with open(filename, 'r') as file:
         # Each line represents a text prompt
@@ -46,11 +53,15 @@ def load_text_prompts(filename,instruction):
 # Load all prompts from 'prompts.txt alongwith instrcution'
 instructions = "Observe the patient and objects in the home environment shown in the video. Answer each question based strictly on visible evidence, avoiding assumptions. Be concise, and respond with 'Yes', 'No', or 'Insufficient information' only."
 
+# Load prompts function call
 conversations = load_text_prompts('/home/pgupt60/TestScripts/Prompts/FallRisk_SimplePrompts.txt', instructions)
 
 ############################################################################################
-##################################### PREPARING THE INPUTS #################################
+############################## STEP 3: PREPARING THE VIDEO INPUTS ##########################
 ############################################################################################
+# Extract uniformly sampled frames (24 in total) from a video using PyAV.
+# Steps involved Opens the video file. Determines frame indices to sample uniformly across the video's length.
+Converts frames into NumPy arrays in RGB format.
 
 def read_video_pyav(container, indices):
     '''
