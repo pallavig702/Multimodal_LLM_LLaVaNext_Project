@@ -59,10 +59,9 @@ conversations = load_text_prompts('/home/pgupt60/TestScripts/Prompts/FallRisk_Si
 ############################################################################################
 ############################## STEP 3: PREPARING THE VIDEO INPUTS ##########################
 ############################################################################################
-# Extract uniformly sampled frames (24 in total) from a video using PyAV.
-# Steps involved Opens the video file. Determines frame indices to sample uniformly across the video's length.
-Converts frames into NumPy arrays in RGB format.
 
+############################## Video Decoding BEGINS #######################################
+# Extract uniformly sampled frames (24 in total) from a video using PyAV.
 def read_video_pyav(container, indices):
     '''
     Decode the video with PyAV decoder.
@@ -85,13 +84,21 @@ def read_video_pyav(container, indices):
 
 # Video processing
 filename = '/home/pgupt60/scripts/CPU_ConvertedVideos/Scenario2_Ipad1_05.mp4'
+
+# Step1: Video Processing: Opens the video file
 container = av.open(filename)
 
-# Sample uniformly 24 frames from the video
+# Step2: Video Processing: Sample uniformly 24 frames from the video
 total_frames = container.streams.video[0].frames
-indices = np.arange(0, total_frames, total_frames / 24).astype(int)
-clip_patient = read_video_pyav(container, indices)
 
+# Step3: Video Processing: Determines frame indices to sample uniformly across the video's length.
+indices = np.arange(0, total_frames, total_frames / 24).astype(int)
+
+# Step4: Video Processing: Converts frames into NumPy arrays in RGB format.
+clip_patient = read_video_pyav(container, indices)
+############################## Video Decoding ENDS #######################################
+
+##################### Code Block: Prompt and Video Processing begins #####################
 # Process each text-based prompt conversation from the file
 generated_texts = []
 prompts = []
@@ -110,6 +117,7 @@ inputs = processor(
     padding=True,
     return_tensors="pt"
 ).to(model.device)
+##################### Code Block: Prompt and Video Processing ends #####################
 
 # Model generation with updated generate_kwargs
 generate_kwargs = {"max_new_tokens": 1000, "do_sample": True, "top_p": 0.9, "temperature": 0.5}
