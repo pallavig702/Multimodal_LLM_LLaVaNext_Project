@@ -58,7 +58,7 @@ instructions = "Observe the patient and objects in the home environment shown in
 conversations = load_text_prompts('/home/pgupt60/TestScripts/Prompts/FallRisk_SimplePrompts.txt', instructions)
 
 ############################################################################################
-############################## STEP 3: PREPARING THE VIDEO INPUTS ##########################
+############## STEP 3: PREPARING THE VIDEO AND TEXT (PROMPTS)INPUTS ########################
 ############################################################################################
 
 ############################## Video Decoding BEGINS #######################################
@@ -99,19 +99,21 @@ indices = np.arange(0, total_frames, total_frames / 24).astype(int)
 clip_patient = read_video_pyav(container, indices)
 ############################## Video Decoding ENDS #######################################
 
-##################### Code Block: Prompt and Video Processing begins #####################
+##################### Code Block: Text (Prompt) and Video Processing begins #####################
 # Process each text-based prompt conversation from the file
 generated_texts = []
 prompts = []
+
+# Step 1: Text (Prompt): Processes each prompt conversation and applies a chat template
 for i, conversation in enumerate(conversations):
     # Apply template and generate prompt for each conversation line   
     prompt_var = processor.apply_chat_template(conversation, add_generation_prompt=True)
     prompts.append(prompt_var)
 
-# Create a list of video frames for each prompt
+# Step 2: Text (Prompt) & Video input prep: Create a list of video frames for each prompt
 videos = [clip_patient] * len(prompts)
 
-# Process inputs for all prompts
+# Step 3: Process inputs for all prompts. Encodes prompts and videos into tensors (return_tensors="pt") for the model.
 inputs = processor(
     prompts,
     videos=videos,
@@ -120,7 +122,13 @@ inputs = processor(
 ).to(model.device)
 ##################### Code Block: Prompt and Video Processing ends #####################
 
+############################################################################################
+############################ STEP 3: MODEL GENERATION ######################################
+############################################################################################
 # Model generation with updated generate_kwargs
+Model Execution: Generates textual responses based on video and text prompts.
+#Parameters: max_new_tokens:Limits output length, do_sample: Enables stochastic sampling for diverse responses, 
+#top_p: Implements nucleus sampling for better quality, temperature: Adjusts randomness in token selection.
 generate_kwargs = {"max_new_tokens": 1000, "do_sample": True, "top_p": 0.9, "temperature": 0.5}
 output = model.generate(**inputs, **generate_kwargs)
 generated_text = processor.batch_decode(output, skip_special_tokens=True)
