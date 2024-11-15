@@ -1,0 +1,9 @@
+Observe the environment around the patient and answer the following:
+1. Is there a table?
+2. Are there any cushions or pillows?
+3. Is there a wheelchair?
+
+List specific objects visible in the environment:
+1. Is there a laptop on the table?
+2. Are there any books?
+3. Is there a trash can in the room?
