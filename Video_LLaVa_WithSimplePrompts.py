@@ -3,6 +3,7 @@
 ############################################################################################
 from transformers import BitsAndBytesConfig, LlavaNextVideoForConditionalGeneration, LlavaNextVideoProcessor
 import torch
+import csv
 import av
 import numpy as np
 
@@ -20,7 +21,7 @@ model = LlavaNextVideoForConditionalGeneration.from_pretrained(
 )
 
 ############################################################################################
-##################################### LOAD TEXT PROMPTS ####################################
+########################### LOAD TEXT PROMPTS AND INSTRUCTIONS  ############################
 ############################################################################################
 
 # Function to read text lines from a file and format them as prompts
@@ -42,9 +43,10 @@ def load_text_prompts(filename,instruction):
     ]
     return conversations
 
-# Load all prompts from 'prompts.txt'
-instructions = "This video shows a patient in their home receiving a visit from a home health nurse. Observe keenly but don't tell what do not exist. Be sure. Be concise. Don't make unnecessary judgements until asked. No inference required. Don't repeat."
-conversations = load_text_prompts('/home/pgupt60/prompts.txt', instructions)
+# Load all prompts from 'prompts.txt alongwith instrcution'
+instructions = "Observe the patient and objects in the home environment shown in the video. Answer each question based strictly on visible evidence, avoiding assumptions. Be concise, and respond with 'Yes', 'No', or 'Insufficient information' only."
+
+conversations = load_text_prompts('/home/pgupt60/TestScripts/Prompts/FallRisk_SimplePrompts.txt', instructions)
 
 ############################################################################################
 ##################################### PREPARING THE INPUTS #################################
@@ -106,6 +108,31 @@ generated_text = processor.batch_decode(output, skip_special_tokens=True)
 # Clean up and store generated text
 processed_text = [text.replace("\\n", "\n") for text in generated_text]
 generated_texts.extend(processed_text)
+
+# Format the generated processed text.
+cleaned_data = []
+
+for item in processed_text:
+    # Split the text at "ASSISTANT:" to separate question and answer
+    if "ASSISTANT:" in item:
+        question, answer = item.split("ASSISTANT:", 1)
+        # Remove "USER:" from the question part
+        question = question.replace("USER:", "").strip()
+        answer = answer.strip()  # Clean up any extra whitespace in the answer
+        # Append to cleaned_data list
+        cleaned_data.append([question, answer])
+
+# Save to a CSV file
+filename = 'output_questions_answers.csv'
+with open(filename, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    # Write the header
+    writer.writerow(["Question", "Answer"])
+    # Write each question-answer pair
+    writer.writerows(cleaned_data)
+
+print(f"Output saved to {filename}")
+
 
 # Save all generated texts to output file
 filename2 = 'output_mllm'
