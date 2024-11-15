@@ -1,3 +1,5 @@
+# This script runs the multi-modal LLaVa-Next Script on cluster utilizing GPUs
+
 #!/bin/bash
 #SBATCH --job-name=palg_multimodal_gpu_jobl2
 #SBATCH --output=output/visuals_%j.txt
@@ -21,4 +23,5 @@ nvidia-smi --list-gpus
 # Alternatively, print the CUDA_VISIBLE_DEVICES environment variable (useful in multi-GPU environments)
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 
+# Run the script
 python TestScripts/Video_LLaVa.py
