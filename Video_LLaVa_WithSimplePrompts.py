@@ -1,4 +1,5 @@
-#This script is a sophisticated machine learning pipeline to process video data alongside textual prompts using a pre-trained model (LLaVA-NeXT-Video-7B-hf).
+# Script Utility: This script is a sophisticated machine learning pipeline to process video 
+# data alongside textual prompts using a pre-trained model (LLaVA-NeXT-Video-7B-hf).
 
 ############################################################################################
 ############################## STEP 1: LOAD THE MODEL ######################################
