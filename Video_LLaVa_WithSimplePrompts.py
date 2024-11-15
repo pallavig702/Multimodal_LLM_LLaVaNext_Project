@@ -123,15 +123,20 @@ inputs = processor(
 ##################### Code Block: Prompt and Video Processing ends #####################
 
 ############################################################################################
-############################ STEP 3: MODEL GENERATION ######################################
+############################ STEP 4: MODEL GENERATION ######################################
 ############################################################################################
-# Model generation with updated generate_kwargs
-Model Execution: Generates textual responses based on video and text prompts.
-#Parameters: max_new_tokens:Limits output length, do_sample: Enables stochastic sampling for diverse responses, 
-#top_p: Implements nucleus sampling for better quality, temperature: Adjusts randomness in token selection.
+# Model Execution generates textual responses based on video and text prompts.
+# Model Parameters: max_new_tokens:Limits output length, do_sample: Enables stochastic sampling for diverse responses, 
+# top_p: Implements nucleus sampling for better quality, temperature: Adjusts randomness in token selection.
+
 generate_kwargs = {"max_new_tokens": 1000, "do_sample": True, "top_p": 0.9, "temperature": 0.5}
 output = model.generate(**inputs, **generate_kwargs)
 generated_text = processor.batch_decode(output, skip_special_tokens=True)
+
+############################################################################################
+###################### STEP 5: POST-PROCESSING AND SAVING RESULTS ##########################
+############################################################################################
+# Step 1: Clean Output: Parses generated text to separate questions (from the user) and answers (from the assistant).
 
 # Clean up and store generated text
 processed_text = [text.replace("\\n", "\n") for text in generated_text]
