@@ -1,5 +1,11 @@
-# Script Utility: This script is a sophisticated machine learning pipeline to process video 
-# data alongside textual prompts using a pre-trained model (LLaVA-NeXT-Video-7B-hf).
+# Script Utility: This script is a sophisticated machine learning pipeline to process video data alongside textual prompts using a pre-trained model (LLaVA-NeXT-Video-7B-hf).
+# This script is designed for tasks requiring visual context comprehension, such as medical evaluations or safety assessments.
+# Core Functionality:
+### (1) Load a quantized pre-trained video-text model (LLaVA-NeXT-Video-7B-hf).
+### (2) Process video and text prompts into a compatible format.
+### (3) Generate concise, video-based answers using the model.
+### (4) Save results in a structured csv.
+
 
 ############################################################################################
 ############################## STEP 1: LOAD THE MODEL ######################################
@@ -155,7 +161,7 @@ for item in processed_text:
         # Append to cleaned_data list
         cleaned_data.append([question, answer])
 
-# Save to a CSV file
+# Step2: Save to CSV: Saves question-answer pairs into a CSV file for analysis
 filename = 'output_questions_answers.csv'
 with open(filename, mode='w', newline='') as file:
     writer = csv.writer(file)
@@ -166,10 +172,10 @@ with open(filename, mode='w', newline='') as file:
 
 print(f"Output saved to {filename}")
 
-
-# Save all generated texts to output file
+'''
+# Optional: Save all generated texts to output file
 filename2 = 'output_mllm'
 with open(filename2, "w") as file:
     file.write("\n".join(generated_texts))
-
+'''
 print(generated_texts)
