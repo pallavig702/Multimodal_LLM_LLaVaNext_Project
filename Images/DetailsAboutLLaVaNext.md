@@ -10,5 +10,5 @@ This publication explores LLaVA-NeXT's performance in video understanding tasks 
 [LLaVA-NeXT: Tackling Multi-image, Video, and 3D in Large Multimodal Models](https://llava-vl.github.io/blog/2024-06-16-llava-next-interleave/)
 This blog post addresses LLaVA-NeXT's capabilities in handling multi-image, video, and 3D data.
 
-[LLaVA-NeXT - GitHub Repository] (https://github.com/LLaVA-VL/LLaVA-NeXT)
+[LLaVA-NeXT - GitHub Repository](https://github.com/LLaVA-VL/LLaVA-NeXT)
 The official GitHub repository provides access to the codebase, models, and additional documentation for LLaVA-NeXT.
