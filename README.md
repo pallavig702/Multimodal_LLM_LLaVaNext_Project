@@ -2,6 +2,7 @@
 
 ### Description
 This project leverages LLaVA Next, a multimodal large language model (MLLM) for visual understanding tasks. The goal is to explore and demonstrate the model's capabilities in interpreting visual information, handling multimodal inputs, and generating detailed outputs. Key applications include object recognition, scene description, and image-text alignment.
+* To get a quick overview on MLLMs see [source 1](https://github.com/pallavig702/MultiModal-Knowledge-Base/blob/main/README.md) and [source 2](https://medium.com/@tenyks_blogger/multimodal-large-language-models-mllms-transforming-computer-vision-76d3c5dd267f)
 
 ### About the Project
 LLaVA Next offers state-of-the-art capabilities for multimodal understanding, combining visual encoding with natural language processing to support a range of tasks. This repository includes scripts and functions for loading and processing videos and querying the model, and obtaining visual interpretations.
