@@ -1,4 +1,4 @@
-LLaVA-NeXT: Stronger LLMs Supercharge Multimodal Capabilities in the Wild
+[LLaVA-NeXT: Stronger LLMs Supercharge Multimodal Capabilities in the Wild](https://llava-vl.github.io/blog/2024-05-10-llava-next-stronger-llms/)
 This blog post discusses the integration of stronger large language models (LLMs) into LLaVA-NeXT, enhancing its multimodal capabilities. [link]( https://llava-vl.github.io/blog/2024-05-10-llava-next-stronger-llms/)
 
 LLaVA-NeXT: Improved Reasoning, OCR, and World Knowledge
