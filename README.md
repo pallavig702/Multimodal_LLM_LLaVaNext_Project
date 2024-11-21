@@ -42,4 +42,12 @@ To check every step check same steps in jupyter notebook.
 We used slurm for this project as we required HPC GPU clusters so we use sbatch. We used 2 Nvidia L40s. <br />
 sbatch sbatch_gpu_resource.sh
 
+### Few Hyperparameters settings in code
+(i) **Frames sampling** from videos: n
+For example: (np.arange(0, total_frames, total_frames / n).astype(int))
+
+(ii)**Additional frames** sampling for better multimodal reasoning.
+model.config.num_additional_image_tokens = 10 #10 could be more but you will have to check the max limit before setting these parameters
+
+(iii) **Temperature** controls the randomness of predictions. Low temperatures (<1) yield more deterministic and precise outputs, ideal for factual tasks, while high temperatures (>1) encourage creative and diverse responses. It balances exploration and exploitation in text generation. A temperature of 0.5 strikes a balance between determinism and creativity. The model prioritizes more probable outcomes but still allows some degree of variability, making it suitable for tasks requiring both coherence and a touch of diversity, like conversational responses or semi-creative writing.
 
