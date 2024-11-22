@@ -88,14 +88,15 @@ video_tensor = [video_tensor]  # Wrap the tensor in a list
 
 # Define the conversation template and instructions
 conv_template = "qwen_1_5"  # Specify the conversation template
+'''
 time_instruction = (
     f"The video lasts for {video_time:.2f} seconds, and {video_tensor[0].shape[0]} frames "
     f"are uniformly sampled from it. These frames are located at {frame_time}. "
     "Please answer the following questions related to this video."
 )
-
+'''
 # Define the question to be asked about the video
-question = DEFAULT_IMAGE_TOKEN + f"\n{time_instruction}\nPlease describe this video in detail."
+question = DEFAULT_IMAGE_TOKEN + f"\nPlease describe this video in detail."
 
 # Initialize the conversation
 conv = copy.deepcopy(conv_templates[conv_template])  # Get a fresh copy of the conversation template
